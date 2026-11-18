@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111b22">
+    <title>滑雪镜头台</title>
+  </head>
+  <body>
+    <header class="bar">
+      <div class="brand"><span class="brand-icon" aria-hidden="true"><i></i><i></i></span><h1>滑雪镜头台</h1></div>
+      <div class="bar-actions"><button id="view-character">人物参考</button><button id="download-image" class="primary">下载参考图 <span>↧</span></button></div>
+    </header>
+    <main class="workbench">
+      <section class="scene-panel" aria-labelledby="scene-heading">
+        <div class="scene-header">
+          <div><h2 id="scene-heading">镜头预览</h2><p id="stage-hint">拖动标记调姿势，拖动空白处转机位。</p></div>
+          <button id="lock" aria-pressed="false" class="lock">锁住姿势</button>
+        </div>
+        <div class="viewport" id="viewport"></div>
+        <div class="scene-footer">
+          <span><i class="status-dot"></i><span id="scene-status">可编辑姿势</span></span>
+          <span id="camera-readout"></span>
+          <span class="zoom-help">滚轮缩放</span>
+        </div>
+      </section>
+      <aside class="inspector" aria-label="镜头设置">
+        <section>
+          <h2>姿势</h2>
+          <div id="pose-groups" class="pose-groups" aria-label="姿势分类"></div>
+          <div id="presets" class="preset-row" aria-label="姿势预设"></div>
+          <div class="adjustment">
+            <label for="lean">躯干前倾</label><output id="lean-value" for="lean"></output>
+            <input id="lean" type="range" min="0" max="55" step="1">
+          </div>
+          <div class="adjustment">
+            <label for="twist">躯干转向</label><output id="twist-value" for="twist"></output>
+            <input id="twist" type="range" min="-36" max="36" step="1">
+          </div>
+          <div class="adjustment">
+            <label for="bank">躯干侧倾</label><output id="bank-value" for="bank"></output>
+            <input id="bank" type="range" min="-36" max="36" step="1">
+          </div>
+        </section>
+        <section>
+          <h2>机位</h2>
+          <div id="views" class="view-grid"></div>
+        </section>
+        <section class="prompt-section">
+          <h2 id="prompt-heading">提示词</h2>
+          <textarea id="prompt" aria-labelledby="prompt-heading" readonly spellcheck="false"></textarea>
+          <div class="prompt-actions">
+            <button id="copy-prompt">复制提示词</button>
+            <button id="download-prompt">下载 TXT</button>
+          </div>
+        </section>
+      </aside>
+    </main>
+    <dialog id="character" aria-labelledby="character-title">
+      <div class="character-header">
+        <h2 id="character-title">目标人物参考</h2>
+        <form method="dialog"><button>关闭</button></form>
+      </div>
+      <div class="character-images">
+        <figure><a href="/character/front.png" download="滑雪人物-正面.png"><img src="/character/front.png" loading="lazy" alt="目标人物正面，肌肉白模，黑短裤与蓝色手套"></a><figcaption>正面</figcaption></figure>
+        <figure><a href="/character/side.png" download="滑雪人物-侧面.png"><img src="/character/side.png" loading="lazy" alt="目标人物侧面，双手持杖，脚踩双板"></a><figcaption>侧面</figcaption></figure>
+        <figure><a href="/character/back.png" download="滑雪人物-背面.png"><img src="/character/back.png" loading="lazy" alt="目标人物背面，白模肌肉轮廓与黑蓝雪具"></a><figcaption>背面</figcaption></figure>
+      </div>
+      <p>点击图片下载原图。生成素材时可把原图和摆好的姿势图一并用作参考。</p>
+    </dialog>
+    <div id="notice" role="status"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
